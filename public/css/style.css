@@ -1,3 +1,36 @@
+
+/* Font Css Start */
+.atma-light {
+    font-family: "Atma", system-ui;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .atma-regular {
+    font-family: "Atma", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .atma-medium {
+    font-family: "Atma", system-ui;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .atma-semibold {
+    font-family: "Atma", system-ui;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .atma-bold {
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+  }
+  /* Font Css END */
+
 .subqnt, .addqnt{
     width:30px;
     font-size: 20px;
@@ -114,6 +147,16 @@ img.lazy {
 #featured {
     width: 100%;
 }
+
+.productqnt .qnt{
+    line-height: 25px;
+    font-size: 20px;
+    width: 35px;
+    height: 30px;
+}
+.related h3{
+    background-color: aquamarine;
+}
 @media screen and (max-width: 800px) {
   .cart-menu{
   padding: 5px 8px;
@@ -127,3 +170,4 @@ img.lazy {
     height: auto;
 }
 }
+

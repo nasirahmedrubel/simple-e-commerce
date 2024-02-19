@@ -20,13 +20,17 @@
         </div>
 
         <div class="col-md-6">
-            <h1>{{$product->name}}</h1>
-            <hr>
+            <h5>{{$product->name}}</h5>
             <h3>${{$product->price}}</h3>
             <form action="{{url('/productcart')}}" method="post">
                 @csrf
                 <input type="hidden" name="productid" value="{{$product->id}}">
-                <input name="qnt" type="number" class="form-control" value="1">
+                <div class="input-group mb-3" style="width: 130px">
+                    <button type="button" id="minus" class="input-group-text">-</button>
+                    <input type="text" id="qnt" class="form-control text-center" name="qnt" value="1" onkeypress="return isNumber(event)">
+                    <button type="button" id="plus" class="input-group-text">+</button>
+                </div>
+                
                 
                 <button type="submit" class="btn btn-success">Buy Now</button>
             </form>
@@ -42,8 +46,12 @@
         </div>
     </div>
 
-</div>
+    <div class="row related">
+        <h3 class="atma-regular text-center">এই ধরনের কিছু প্রোডাক্ট</h3>
+    </div>
 
+</div>
+@if($feature_image === true)
 <script type="text/javascript">
     let thumbnails = document.getElementsByClassName('thumbnail')
 
@@ -77,5 +85,33 @@
     })
 
 
+</script>
+@endif
+<script type="text/javascript">
+    let qnt = document.querySelector('#qnt');
+    let plus = document.querySelector('#plus');
+    let minus = document.querySelector('#minus');
+
+    plus.onclick = () => {
+        qnt.value = parseInt(qnt.value) + 1;
+    }
+    minus.onclick = () => {
+        if(parseInt(qnt.value) > 1){
+            qnt.value = parseInt(qnt.value) - 1;
+        }
+    }
+    qnt.onchange = () => {
+        if(qnt.value === ""){
+            qnt.value = 1;
+        }
+    }
+    function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 </script>
 @endsection

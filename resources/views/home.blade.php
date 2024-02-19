@@ -46,19 +46,7 @@
     </div> --}}
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.js" integrity="sha512-FruHrHbK/kxrB8bV0sXKTaPazRf3Nz5gFVtdV0INaL+XZ6ehZtcuiGe8ZcJkvOcnPNBcJzZFAnkgdl7PmepNnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-      $('.your-class').slick({
-        dots: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows:true,
-       });
-    });
     $(function() {
         $('.lazy').Lazy();
     });
