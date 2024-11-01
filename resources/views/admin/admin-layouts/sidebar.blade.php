@@ -24,9 +24,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.products')}}" class="nav-link">
+                    <a href="{{route('admin.invoice')}}" class="nav-link">
                         <i class="nav-icon fas fa-tag"></i>
-                        <p>Admin-Products</p>
+                        <p>Invoice</p>
                     </a>
                 </li>
                 

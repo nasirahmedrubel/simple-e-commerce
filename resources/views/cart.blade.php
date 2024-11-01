@@ -7,16 +7,31 @@
             <form method="post" action="{{url('/orderstore')}}">
                 @csrf
                 <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" name="name"  placeholder="Enter name">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name"  placeholder="Enter name">
+                    @error('name')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" name="address"  placeholder="Enter address">
+                    @error('address')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="address">Phone</label>
                     <input type="text" class="form-control" id="phone" name="phone"  placeholder="Enter phone">
+                    @error('phone')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group d-flex gap-2 mt-3">
                     <div class="form-control">
@@ -165,6 +180,10 @@
                         id: ele.parents("tr").attr("rowId")
                     },
                     success: function (response) {
+                        if(response['subtotal'] === 0)
+                        {
+                            location.reload();
+                        }
                         ele.parents("tr").remove(); 
                         $('.sub-total').text(response['subtotal']);
                         $('.grand-total').text(response['nettotal']);

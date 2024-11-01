@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Categories;
 use App\Models\Status;
 use App\Models\Feature_image;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class WebsiteControllers extends Controller
 {
@@ -132,5 +134,33 @@ class WebsiteControllers extends Controller
         $data = compact('getfiles');
         return view('admin.images-show')->with($data);
         // dd($getfiles);
+    }
+
+    public function login(){
+        return view('admin.login');
+    }
+
+    public function logincheck(request $Request){
+        $validate = $Request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::Where('name', '=', $Request['username'])->first();
+        if($user){
+            if(Hash::check($Request->password, $user->password)){
+                session()->put('isLogin', $user->id);
+                return redirect()->route('admin.invoice');
+            } else {
+                
+                return redirect()->back()->with('fail', 'Password not Matches');
+            }
+        } else {
+            return back()->with('fail', 'UserName is not registered');
+        }
+    }
+    public function logout(){
+        session()->flush();
+        return redirect()->route('login.view');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 
@@ -116,8 +117,7 @@ class Products extends Controller
         // echo count($cart);
         if(isset($cart)){
             if(count($cart) === 0){
-                echo 'cart is empty';
-                die();
+                return redirect(route('home.view'));
             } else {
                 $sub_total = self::grand_total();
                 $net_total = self::net_total();
@@ -183,6 +183,11 @@ class Products extends Controller
         $net_total = self::net_total();
         return response()->json(['subtotal' => $sub_total, 'nettotal' => $net_total]);
     }
+    public function getinvoicedetails(Request $request){
+        $product =  Invoice::find($request->id)->invoicedetails->load('product');
+        $id = Invoice::find($request->id);
+        return response()->json(['id' => $id, 'product' => $product]);
+    }
 
     public function order_submit(Request $request){
         $validated = $request->validate([
@@ -209,6 +214,9 @@ class Products extends Controller
         self::cartcount();
         $totalqnt = session()->get('countcart');
         $product = Product::find($id);
+        if(is_null($product)){
+            return abort(404);
+        }
         $feature_image = $product->feature_images;
         if(count($feature_image)>0){
             $feature_image = true;
@@ -218,5 +226,9 @@ class Products extends Controller
 
         $data = compact('product','totalqnt', 'feature_image');
         return view('products-page')->with($data);
+    }
+
+    public function thankyou(){
+        return view('thankyou-page');
     }
 }

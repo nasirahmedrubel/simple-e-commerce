@@ -31,8 +31,13 @@
                     <button type="button" id="plus" class="input-group-text">+</button>
                 </div>
                 
-                
-                <button type="submit" class="btn btn-success">Buy Now</button>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success atma-regular cart-btn">অর্ডার করুন</button>
+                    <a href="tel:+8801310852824" class="btn btn-info cart-btn mt-3"> 
+                        <i class="fa fa-phone-alt"></i>
+                        কল করতে ক্লিক করুন : 01310852824
+                    </a>
+                </div>
             </form>
         </div>
     </div>

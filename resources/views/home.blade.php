@@ -14,14 +14,9 @@
                     <a href="{{url('Product/')}}/{{$product->id}}">
                     <img data-src="{{url('storage/images/' . $product->img )}}" class="card-img-top lazy" alt="...">
                     </a>
-                    <div class="card-body">
                     <h5 class="card-title">{{$product->name}}</h5>
                     <div class="col-sm-6"><h6 class="product-price">TK <span>{{$product->price}}</span></h6></div>
-                    <div class="d-grid">
-                        <a href="{{route('add.to.cart',$product->id)}}" class="btn btn-success">অর্ডার করুন</a>
-                    </div>
-                    
-                    </div>
+                    <a href="{{route('add.to.cart',$product->id)}}" class="w-100 btn btn-success">অর্ডার করুন</a>
                 </div>
             </div>
         @endforeach

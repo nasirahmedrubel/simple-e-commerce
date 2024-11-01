@@ -5,7 +5,9 @@ use App\Http\Controllers\sample;
 use App\Http\Controllers\Products;
 use App\Http\Controllers\WebsiteControllers;
 use App\Http\Controllers\Colors;
-
+use App\Http\Controllers\Order;
+use App\Http\Controllers\Invoices;
+use App\Http\Controllers\shipment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,17 @@ Route::post('/admin/products/create/upload', [WebsiteControllers::class, 'ckedit
 Route::get('/admin/products/delete/{id}', [WebsiteControllers::class, 'product_delete'])->name('admin.product.delete');
 Route::get('/admin/getimages', [WebsiteControllers::class, 'getimages'])->name('admin.getimages');
 
+Route::get('/admin/invoice', [Invoices::class, 'index'])->name('admin.invoice')->middleware('AdminAuth');
+Route::post('/admin/invoice', [Invoices::class, 'print'])->name('invoice.print');
+
+Route::get('admin/shipment', [shipment::class, 'index'])->name('shipment.view');
+Route::get('admin/login', [WebsiteControllers::class, 'login'])->name('login.view');
+Route::post('admin/login', [WebsiteControllers::class, 'logincheck'])->name('login.check');
+Route::get('admin/logout', [WebsiteControllers::class, 'logout'])->name('log.out');
+
+Route::get('/admin/invoice/delete/{id}', [Order::class, 'delete']);
+
+Route::get('/admin/invoicedetails/{id}', [Invoices::class, 'details']);
 
 Route::get('/', [WebsiteControllers::class, 'index'])->name('home.view');
 Route::get('/form', [Products::class, 'index'])->name('product.view');
@@ -44,10 +57,13 @@ Route::get('product/delete/{id}', [Products::class, 'ProductDelete']);
 
 Route::post('/quantityupdate', [Products::class, 'QuantityUpdate']);
 Route::post('/dchargeupdate', [Products::class, 'dchargeupdate'])->name('dcharge.update');
+Route::post('/getinvoiceproduct', [Products::class, 'getinvoicedetails'])->name('get.invoicedetails');
 
-Route::post('/orderstore', [Products::class, 'order_submit']);
+Route::post('/orderstore', [Order::class, 'index']);
 
 Route::get('/color', [Colors::class, 'index'])->name('color.view');
 Route::Post('/color', [Colors::class, 'store'])->name('color.add');
 
 Route::get('/cartcount', [Products::class, 'cartcount']);
+
+Route::get('/thankyou', [Products::class, 'thankyou'])->name('thank.you');

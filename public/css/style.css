@@ -17,7 +17,7 @@
     font-weight: 500;
     font-style: normal;
   }
-  
+ 
   .atma-semibold {
     font-family: "Atma", system-ui;
     font-weight: 600;
@@ -156,6 +156,11 @@ img.lazy {
 }
 .related h3{
     background-color: aquamarine;
+}
+@media screen and (min-width: 600px) {
+  .card-body{
+    padding: 10 2px !important;
+  }
 }
 @media screen and (max-width: 800px) {
   .cart-menu{
